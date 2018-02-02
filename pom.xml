@@ -247,6 +247,20 @@
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>8.1.16.v20140903</version>
+        <configuration>
+          <connectors>
+            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+              <port>8090</port>
+            </connector>
+          </connectors>
+
+          <stopKey>stop1</stopKey>
+          <stopPort>5599</stopPort>
+          <webAppConfig>
+            <contextPath>/</contextPath>
+          </webAppConfig>
+          <scanIntervalSeconds>5</scanIntervalSeconds>
+        </configuration>
       </plugin>
       <!--jdk 版本-->
       <plugin>
@@ -255,6 +269,24 @@
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>1.3.2</version>
+        <dependencies>
+          <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.35</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <!--配置文件的路径-->
+          <configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>
+          <overwrite>true</overwrite>
         </configuration>
       </plugin>
     </plugins>
