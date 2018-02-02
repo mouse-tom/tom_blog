@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mouse.blog.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.mouse.blog.model.Article" >
+    <constructor >
+      <idArg column="article_id" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="article_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="article_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="article_ip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="article_click" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sort_article_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="type_id" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="article_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="article_up" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="article_support" jdbcType="TINYINT" javaType="java.lang.Byte" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mouse.blog.model.Article" >
+    <constructor >
+      <idArg column="article_id" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="article_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="article_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="article_ip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="article_click" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sort_article_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="type_id" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="article_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="article_up" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="article_support" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="article_content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    article_id, article_name, article_time, article_ip, article_click, sort_article_id, 
+    user_id, type_id, article_type, article_up, article_support
+  </sql>
+  <sql id="Blob_Column_List" >
+    article_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where article_id = #{articleId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from article
+    where article_id = #{articleId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.mouse.blog.model.Article" >
+    insert into article (article_id, article_name, article_time, 
+      article_ip, article_click, sort_article_id, 
+      user_id, type_id, article_type, 
+      article_up, article_support, article_content
+      )
+    values (#{articleId,jdbcType=SMALLINT}, #{articleName,jdbcType=VARCHAR}, #{articleTime,jdbcType=INTEGER}, 
+      #{articleIp,jdbcType=VARCHAR}, #{articleClick,jdbcType=INTEGER}, #{sortArticleId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{typeId,jdbcType=TINYINT}, #{articleType,jdbcType=INTEGER}, 
+      #{articleUp,jdbcType=TINYINT}, #{articleSupport,jdbcType=TINYINT}, #{articleContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mouse.blog.model.Article" >
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        article_id,
+      </if>
+      <if test="articleName != null" >
+        article_name,
+      </if>
+      <if test="articleTime != null" >
+        article_time,
+      </if>
+      <if test="articleIp != null" >
+        article_ip,
+      </if>
+      <if test="articleClick != null" >
+        article_click,
+      </if>
+      <if test="sortArticleId != null" >
+        sort_article_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="articleType != null" >
+        article_type,
+      </if>
+      <if test="articleUp != null" >
+        article_up,
+      </if>
+      <if test="articleSupport != null" >
+        article_support,
+      </if>
+      <if test="articleContent != null" >
+        article_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        #{articleId,jdbcType=SMALLINT},
+      </if>
+      <if test="articleName != null" >
+        #{articleName,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTime != null" >
+        #{articleTime,jdbcType=INTEGER},
+      </if>
+      <if test="articleIp != null" >
+        #{articleIp,jdbcType=VARCHAR},
+      </if>
+      <if test="articleClick != null" >
+        #{articleClick,jdbcType=INTEGER},
+      </if>
+      <if test="sortArticleId != null" >
+        #{sortArticleId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=TINYINT},
+      </if>
+      <if test="articleType != null" >
+        #{articleType,jdbcType=INTEGER},
+      </if>
+      <if test="articleUp != null" >
+        #{articleUp,jdbcType=TINYINT},
+      </if>
+      <if test="articleSupport != null" >
+        #{articleSupport,jdbcType=TINYINT},
+      </if>
+      <if test="articleContent != null" >
+        #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mouse.blog.model.Article" >
+    update article
+    <set >
+      <if test="articleName != null" >
+        article_name = #{articleName,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTime != null" >
+        article_time = #{articleTime,jdbcType=INTEGER},
+      </if>
+      <if test="articleIp != null" >
+        article_ip = #{articleIp,jdbcType=VARCHAR},
+      </if>
+      <if test="articleClick != null" >
+        article_click = #{articleClick,jdbcType=INTEGER},
+      </if>
+      <if test="sortArticleId != null" >
+        sort_article_id = #{sortArticleId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=TINYINT},
+      </if>
+      <if test="articleType != null" >
+        article_type = #{articleType,jdbcType=INTEGER},
+      </if>
+      <if test="articleUp != null" >
+        article_up = #{articleUp,jdbcType=TINYINT},
+      </if>
+      <if test="articleSupport != null" >
+        article_support = #{articleSupport,jdbcType=TINYINT},
+      </if>
+      <if test="articleContent != null" >
+        article_content = #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where article_id = #{articleId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mouse.blog.model.Article" >
+    update article
+    set article_name = #{articleName,jdbcType=VARCHAR},
+      article_time = #{articleTime,jdbcType=INTEGER},
+      article_ip = #{articleIp,jdbcType=VARCHAR},
+      article_click = #{articleClick,jdbcType=INTEGER},
+      sort_article_id = #{sortArticleId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=TINYINT},
+      article_type = #{articleType,jdbcType=INTEGER},
+      article_up = #{articleUp,jdbcType=TINYINT},
+      article_support = #{articleSupport,jdbcType=TINYINT},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mouse.blog.model.Article" >
+    update article
+    set article_name = #{articleName,jdbcType=VARCHAR},
+      article_time = #{articleTime,jdbcType=INTEGER},
+      article_ip = #{articleIp,jdbcType=VARCHAR},
+      article_click = #{articleClick,jdbcType=INTEGER},
+      sort_article_id = #{sortArticleId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=TINYINT},
+      article_type = #{articleType,jdbcType=INTEGER},
+      article_up = #{articleUp,jdbcType=TINYINT},
+      article_support = #{articleSupport,jdbcType=TINYINT}
+    where article_id = #{articleId,jdbcType=SMALLINT}
+  </update>
+
+  <!-- 文章列表查询 -->
+  <select id="selectByArticleNameOrContent" resultType="com.mouse.blog.model.Article" parameterType="java.lang.String">
+    SELECT * from article
+    <where>
+          <if test="searchContent != null && searchContent!= ''">
+              AND  article_name LIKE concat ('%',#{searchContent},'%') OR article_content LIKE concat ('%',#{searchContent},'%')
+          </if>
+    </where>
+  </select>
+
+</mapper>
