@@ -11,7 +11,7 @@ public interface ArticleMapper {
 
     int insertSelective(Article record);
 
-    Article selectByPrimaryKey(Short articleId);
+    Article selectByPrimaryKey(String articleId);
 
     int updateByPrimaryKeySelective(Article record);
 

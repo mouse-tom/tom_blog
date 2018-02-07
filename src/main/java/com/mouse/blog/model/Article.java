@@ -1,7 +1,7 @@
 package com.mouse.blog.model;
 
 public class Article {
-    private Short articleId;
+    private String articleId;
 
     private String articleName;
 
@@ -25,7 +25,7 @@ public class Article {
 
     private String articleContent;
 
-    public Article(Short articleId, String articleName, Integer articleTime, String articleIp, Integer articleClick, Integer sortArticleId, Integer userId, Byte typeId, Integer articleType, Byte articleUp, Byte articleSupport, String articleContent) {
+    public Article(String articleId, String articleName, Integer articleTime, String articleIp, Integer articleClick, Integer sortArticleId, Integer userId, Byte typeId, Integer articleType, Byte articleUp, Byte articleSupport, String articleContent) {
         this.articleId = articleId;
         this.articleName = articleName;
         this.articleTime = articleTime;
@@ -44,11 +44,11 @@ public class Article {
         super();
     }
 
-    public Short getArticleId() {
+    public String getArticleId() {
         return articleId;
     }
 
-    public void setArticleId(Short articleId) {
+    public void setArticleId(String articleId) {
         this.articleId = articleId;
     }
 
