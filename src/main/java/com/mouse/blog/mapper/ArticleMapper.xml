@@ -215,7 +215,7 @@
   <select id="selectByArticleNameOrContent" resultType="com.mouse.blog.model.Article" parameterType="java.lang.String">
     SELECT * from article
     <where>
-          <if test="searchContent != null && searchContent!= ''">
+          <if test="searchContent != null and searchContent!= ''">
               AND  article_name LIKE concat ('%',#{searchContent},'%') OR article_content LIKE concat ('%',#{searchContent},'%')
           </if>
     </where>

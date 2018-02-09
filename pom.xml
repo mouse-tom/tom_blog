@@ -241,6 +241,16 @@
   </dependencies>
   <build>
     <finalName>tom_blog</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
     <plugins>
       <!--jetty 插件-->
       <plugin>
@@ -291,4 +301,5 @@
       </plugin>
     </plugins>
   </build>
+
 </project>

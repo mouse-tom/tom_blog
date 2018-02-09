@@ -17,6 +17,7 @@ import java.util.List;
  * @create 2018-02-02 18:15
  **/
 @Controller
+@RequestMapping(value="article")
 public class ArticleController {
 
     private static Logger log = Logger.getLogger(ArticleController.class);
@@ -33,14 +34,14 @@ public class ArticleController {
       * @return
       */
     @ResponseBody
-    @RequestMapping(value="artileList.html")
+    @RequestMapping(value="artileList.html",produces = "text/html;charset=UTF-8")
     public String aritleList(String searchContent){
         List<Article> articleList = articleService.selectByArticleNameOrContent(searchContent);
         return JSONUtil.objectToString("列表查询成功",articleList);
     }
 
      /*
-      * @Description 请描述
+      * @Description 发表文章
       * @author 杨雪松
       * @date 2018/2/2 19:19
       * @param
