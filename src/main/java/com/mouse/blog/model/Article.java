@@ -25,25 +25,6 @@ public class Article {
 
     private String articleContent;
 
-    public Article(String articleId, String articleName, Integer articleTime, String articleIp, Integer articleClick, Integer sortArticleId, Integer userId, Byte typeId, Integer articleType, Byte articleUp, Byte articleSupport, String articleContent) {
-        this.articleId = articleId;
-        this.articleName = articleName;
-        this.articleTime = articleTime;
-        this.articleIp = articleIp;
-        this.articleClick = articleClick;
-        this.sortArticleId = sortArticleId;
-        this.userId = userId;
-        this.typeId = typeId;
-        this.articleType = articleType;
-        this.articleUp = articleUp;
-        this.articleSupport = articleSupport;
-        this.articleContent = articleContent;
-    }
-
-    public Article() {
-        super();
-    }
-
     public String getArticleId() {
         return articleId;
     }

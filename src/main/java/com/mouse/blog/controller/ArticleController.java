@@ -25,7 +25,6 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-
      /*
       * @Description 文章列表查询
       * @author 杨雪松
@@ -37,6 +36,7 @@ public class ArticleController {
     @RequestMapping(value="artileList.html",produces = "text/html;charset=UTF-8")
     public String aritleList(String searchContent){
         List<Article> articleList = articleService.selectByArticleNameOrContent(searchContent);
+
         return JSONUtil.objectToString("列表查询成功",articleList);
     }
 

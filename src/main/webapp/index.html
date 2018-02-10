@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
+
+<head>
+	<meta charset="UTF-8">
+	<title>mouse_blog</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+
+	<!-- <script type="text/javascript" src="js/jquery-3.3.1.js"></script> -->
+	<style>
 	@media screen and (max-width: 768px) {
 	    .rg_hiden{
 	    	display: none;
@@ -8,41 +18,88 @@
 	}
 
 	.content{
-		margin-top: 80px;
+		/*margin-top: 80px;*/
 	}
 
 	.article_list{
 		border-bottom: 1px solid #ccc;
 	}
-	
-</style>
-<head>
-	<meta charset="UTF-8">
-	<title>mouse_blog</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<!-- <script type="text/javascript" src="js/jquery-3.3.1.js"></script> -->
 
+	.topBar{
+		margin-top: 70px;
+	}
+
+	.centerContent{
+		/*margin-top: 40px;*/
+	}
+	
+	.row{
+		height:100px;
+	}
+
+	.row .col-md-4{
+		line-height: 100px;
+		height: 100%;
+	}
+
+	.row .col-md-4 .btn{
+		width: 150px;
+		height:40px;
+	}
+
+	.row .col-md-4 h2{
+		line-height: 50px;
+	}
+
+	#article_content{
+		height: 500px;
+		background: rgba(0,0,0,0.1);
+	}
+
+
+
+
+	
+
+	 
+
+</style>
 </head>
 <body>
+
+	<div class="container topBar" >
+		<div class="row">
+			
+			<div class="col-md-4">
+					<h2>MOUSE-TOM</h2>
+			</div>
+		
+			<div class="col-md-4">
+				
+			</div>
+
+			<div class="col-md-4">
+				<button type="button" class="btn btn-info">发表文章</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" id="searchInputID">
+    			<input type="email" class="form-control searchInput" id="searchContent" placeholder="请输入搜索的关键词">
+			</div>
+		</div>
+	</div>
 	
 	<div class="container">
 
-		<div class="row">
-			<div class="col-xs-12">
-				<h2>MOUSE-TOM</h2>
-			</div>
-		</div>
+		
 
 		<div class="row content">
 			<div class="col-md-8 col-xs-12" id="article_content">
-
+					
 			</div>
 
-			<div class="rg_hiden">	
-				<!-- <h4>你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</h4> -->
+			<div class="col-md-4 rg_hiden">	
+				 <h3>你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</h3> 
 				<!-- <div style="width：100%;height:500px;background-color: pink;"></div> -->
 			</div>
 			<!-- <div class="col-lg-12">
@@ -53,17 +110,17 @@
 </body>
 <script type="text/javascript">
 	$(function(){
-		$.ajax({
-			type: "POST",
-			url: "article/artileList.html",
-			data: "",
-            success: function(data){
-                $("#article_content").append("<a href='#'><div class='col-lg-12 article_list'><span><article><a href=''>"+
-                    "<h3>你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</h3></a></article></span></div></a>")
 
-            }
-		});
+	    $.post("article/artileList.html",{searchContent:"习近平"},function(data){
+            $(data.data).each(function (i) {
+                $("#article_content").append("<a href='#'><div class='col-lg-12 article_list'><span><article><a href=''>"+
+                    "<h3>"+data.data[i].articleName+"</h3></a></article></span></div></a>")
+            })
+		},"json")
+
+	    // $("").
 	})
 
+	// $('#example').popover(options)
 </script>
 </html>
