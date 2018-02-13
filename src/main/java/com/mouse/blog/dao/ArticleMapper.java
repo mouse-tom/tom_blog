@@ -1,6 +1,7 @@
 package com.mouse.blog.dao;
 
 import com.mouse.blog.model.Article;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,5 +22,5 @@ public interface ArticleMapper {
 
     int updateByPrimaryKey(Article record);
     
-    List<Article> selectByArticleNameOrContent( String searchContent);
+    List<Article> selectByArticleNameOrContent(@Param("searchContent") String searchContent);
 }
